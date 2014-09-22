@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0051)http://wpi.renren.com/wtalk/ime.htm?v=1410439072594 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+
+</head>
+			
+<body>
+<script type="text/javascript">
+
+
+var imVer = '20130115/1628';  //标识本次更新时间信息,在异常报告中会带上这个信息
+var cssVer = 'a61694';  //样式文件版本号,三个文件同一个号
+
+top.XN.getFileVersion([
+	['http://s.xnimg.cn/a51943/apps/radio/js/radio-main.js',
+	'http://s.xnimg.cn/a52757/apps/radio/css/radio-main-all-min.css']
+]);
+
+try{
+	var ocss = top.document.getElementById('webpager_outdate_css');
+	if(ocss){
+		ocss.parentNode.removeChild(ocss);
+	}else{
+		var ocss = top.document.body.getElementsByTagName('link');
+		var old_css = /n\/core\/webpager.*css$/;
+		for(var i=0; i<ocss.length; i++){
+			if( old_css.test( ocss[i].href ) ){
+				top.document.body.removeChild( ocss[i] );
+			}
+		}
+	}
+}catch(e){
+	window.erro = e;
+}
+</script>
+
+<script type="text/javascript">
+
+function getCookie(name) {
+	var results = document.cookie.match( '(^|;) ?' + name + '=([^;]*)(;|$)');
+	if(results)
+		return decodeURIComponent(results[2]);
+	return null;
+}
+
+//这个貌似是后端做压力测试的访问量来源
+function dark_launch(url) {
+	var uin = getCookie('id');
+	if (uin && (uin % 100 >= 90)) {
+		var img = document.createElement("img");
+		img.setAttribute("src", url);
+		img.setAttribute("width","0");
+		img.setAttribute("height","0");
+		img.style.dispaly = 'none';
+		document.body.appendChild(img);
+	}
+}
+// 数据公司合作cookie mapping
+    function loadCM() {
+		 var body = top.document.getElementsByTagName("body")[0];
+		 var div = top.document.createElement('div');
+		 var img = top.document.createElement('img');
+		 img.src = 'http://m.wrating.com/m.gif?a=&c=860010-2370010126&mcookie=' + top.XN.cookie.get('id');
+		 div.appendChild(img);
+		 div.setAttribute('style', 'display:none;');
+		 body.appendChild(div);
+	}
+	// loadCM();
+window.setTimeout(function() {
+	try{
+		var h = top.location.hostname;
+		if (true || h == 'www.renren.com' || h == 'apps.renren.com') {
+			var ref = escape(top.location);
+			dark_launch("http://notify.renren.com/test/feedview?ref=" + ref);
+		}
+	} catch(e) {}
+}, 20000);
+//End 压力测试
+
+if(window.registerWebim)
+	registerWebim();
+
+//白名单策略
+var shabby = '195392601&343554699';
+
+var ua = navigator.userAgent;
+if(ua.indexOf('Windows') > -1){
+	window.AD_FOR_RRZM = {
+		platform: 'windows',
+		ver: 3,
+		buddybar: [
+			 {link: 'http://im.renren.com/desktop/renrensetup-54.exe?wp01', text: '隐身登录，悄悄在线-人人桌面'}
+			,{link: 'http://im.renren.com/desktop/renrensetup-54.exe?wp02', text: '嘘..上班呢-人人桌面,定时提醒'}
+			,{link: 'http://im.renren.com/desktop/renrensetup-54.exe?wp03', text: '不开网页上人人!-人人桌面'}
+			,{link: 'http://im.renren.com/desktop/renrensetup-54.exe?wp04', text: '畅快聊天，沟通更快捷-人人桌面'}
+		],
+		standby: [
+			 { image: 'http://s.xnimg.cn/actimg/rrzm/wp-rrzm-ad-36.png', style: 'width:66px;left:112px;bottom:12px;color:#2489db', url: 'http://im.renren.com/desktop/renrensetup-56.exe?p02', download: 'http://im.renren.com/desktop/renrensetup-56.exe?p02'}
+			,{ image: 'http://s.xnimg.cn/actimg/rrzm/wp-rrzm-ad-23.png', style: 'width:75px;left:103px;bottom:16px;color:#7b7b7b', url: 'http://im.renren.com/desktop/renrensetup-56.exe?p01', download: 'http://im.renren.com/desktop/renrensetup-56.exe?p01'}
+		]
+	};
+}else if(ua.indexOf('Mac ') > -1){
+	window.AD_FOR_RRZM = {
+		platform: 'mac',
+		ver: 3,
+		buddybar: [
+			 {link: 'http://im.renren.com/mac/install/rrzm-1.dmg', text: '消息实时提醒-人人桌面Mac版'}
+			,{link: 'http://im.renren.com/mac/install/rrzm-1.dmg', text: '浮层无痕预览-人人桌面Mac版'}
+		],
+		standby: [
+			 { image: 'http://s.xnimg.cn/actimg/rrzm/ad-mac-1.png', style: 'width:53px;left:120px;bottom:17px;color:#DB942E', url: 'http://im.renren.com/mac?word01', download: 'http://im.renren.com/mac/install/rrzm-1.dmg'}
+			//,{ image: 'http://s.xnimg.cn/actimg/rrzm/wp-rrzm-ad-18.png', style: 'width:67px;left:103px;bottom:18px;color:#336699', url: 'http://im.renren.com/?subver=56&p01', download: 'http://im.renren.com/desktop/rrsetup-56.exe?p01'}
+		]
+	};
+}
+</script>
+<script>
+if(top.XN.cookie.get("ver")==="7.0"){
+	top.jxn("#wp-buddylist-placeholder").remove();
+	top.jxn("html").removeClass("marginRightForPager");
+	top.jxn.cookie.set("l4pager","0",{expires:30,domain:".renren.com"});
+}else{
+	document.write("<scr"+"ipt type=\"text\/javascript\" src=\"http:\/\/s.xnimg.cn\/a69934\/webpager\/channel.js\"><\/scr"+"ipt>");
+}
+</script><script type="text/javascript" src="channel.js"></script><script type="text/javascript">
+document.domain = 'renren.com';
+</script><script type="text/javascript" data-src="http://s.xnimg.cn/a69934/webpager/im.js" data-module="webpager/im"></script><script type="text/javascript" data-src="http://s.xnimg.cn/a51441/n/apps/status/module/webpager/tip.js" data-module="webpager/im"></script>
+
+</body></html>

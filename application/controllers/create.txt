@@ -1,0 +1,78 @@
+create table worker_list 
+(
+	id int not null primary key auto_increment,
+	name varchar(128) not null default "undefined",
+	number int not null default 0,
+	phone int not null default 0,
+	level int not null default 1
+) default charset utf8;
+
+create table current_info
+(
+  id int not null primary key auto_increment,
+  year int not null default 2014,
+  season int not null default 1,
+  week int not null default 1
+) default charset utf8;
+
+create table manage
+(
+	id int not null primary key auto_increment,
+	
+) default charset utf8;
+
+create table manager
+(
+	id int not null primary key auto_increment,
+	year int not null default 0,
+	season enum('1','2','3') default 1,
+	week int not null default 0,
+	day tinyint not null default 0,
+	period enum('1','2') default 1,
+	uid int not null default 0,
+	time int not null default 0,
+	date timestamp default current_timestamp,
+	active enum('0','1')
+) default charset utf8;
+
+create table girl
+(
+	id int not null primary key auto_increment,
+	year int not null default 0,
+	season enum('1','2','3') default 1,
+	week int not null default 0,
+	day tinyint not null default 0,
+	period enum('1','2') default 1,
+	uid int not null default 0,
+	time int not null default 0,
+	date timestamp default current_timestamp,
+	active enum('0','1')
+) default charset utf8;
+
+create table coach
+(
+	id int not null primary key auto_increment,
+	year int not null default 0,
+	season enum('1','2','3') default 1,
+	week int not null default 0,
+	day tinyint not null default 0,
+	period enum('1','2') default 1,
+	uid int not null default 0,
+	time int not null default 0,
+	date timestamp default current_timestamp,
+	active enum('0','1')
+) default charset utf8;
+
+create table boy
+(
+	id int not null primary key auto_increment,
+	year int not null default 0,
+	season enum('1','2','3') default 1,
+	week int not null default 0,
+	day tinyint not null default 0,
+	period enum('1','2') default 1,
+	uid int not null default 0,
+	time int not null default 0,
+	date timestamp default current_timestamp,
+	active enum('0','1')
+) default charset utf8;

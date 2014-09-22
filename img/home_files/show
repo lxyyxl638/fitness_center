@@ -1,0 +1,9 @@
+var jebe_json = {
+  "ad_js_version":"66074",
+  "ad_css_version":47178,
+  "udpate_interval":"20",
+  "max_update_count":"15",
+  "list" : [  
+  ]
+};
+
