@@ -59,7 +59,7 @@
                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">个人中心<strong class="caret"></strong></a>
                    <ul class="dropdown-menu">
                      <li>
-                        <a href="#">修改资料</a>
+                        <a href="profile">修改资料</a>
                      </li>
                      <li>
                         <a href="logout">注销登陆</a>

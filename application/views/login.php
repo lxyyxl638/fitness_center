@@ -92,8 +92,28 @@
                 </div>    
                 <div class="panel panel-danger" id="output_signup">                
                   <div class="panel-heading" id="output_sign"></div>
+                </div>              
+              </div>
+
+              <div style="position:fixed;top:30%;left:40%" id="password_reset">
+                <div class="row">
+                  <div class="col-md-12">
+                    <span style="color:#FFFFFF;">学号</span><input name="username" class="form-control" id="username_rst" placeholder="输入您注册的学号" />
+                  </div>
                 </div>
-                
+                <div class="row">
+                    <div class="col-md-12">
+                      <span style="color:#FFFFFF;">邮箱</span><input type="text" class="form-control" id="email_rst" placeholder="输入您注册时填写的邮箱"/>
+                    </div>
+                </div>
+                <p></p>
+                <div>
+                    <button type="button" id="info_submit" class="btn btn-success btn-block">确认</button>
+                    <button type="button" id="info_goback" class="btn btn-danger btn-block">返回</button>        
+                </div>
+                <div class="panel panel-danger" id="output_reset">
+                  <div class="panel-heading" id="output_rst"></div>
+                </div>
               </div>
         </div>  
     </div>

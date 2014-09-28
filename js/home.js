@@ -25,30 +25,30 @@ $(function(){
    	 	}
     });	
 
-    // $("#year,#season,#week").change(function(){
-    // 	$.post(Base_url + "scheme/view",{
-    // 		"year":$("#year").val(),
-    // 		"season":$("#season").val(),
-    // 		"week":$("#week").val()
-    // 	},function(data){
-    // 		if (data['1']['state'] == "success")
-    // 		{
-    // 			create_view(data['1'],"#manager_afternoon","#manager_evening");
-    // 		}
-    // 		if (data['2']['state'] == "success")
-    // 		{
-    // 			create_view(data['2'],"#boy_afternoon","#boy_evening");
-    // 		}
-    // 		if (data['3']['state'] == "success")
-    // 		{
-    // 			create_view(data['3'],"#girl_afternoon","#girl_evening");
-    // 		}
-    // 		if (data['4']['state'] == "success")
-    // 		{
-    // 			create_view(data['4'],"#coach_afternoon","#coach_evening");
-    // 		}
-    // 	});
-    // });
+    $("#year,#season,#week").change(function(){
+    	$.post(Base_url + "scheme/view",{
+    		"year":$("#year").val(),
+    		"season":$("#season").val(),
+    		"week":$("#week").val()
+    	},function(data){
+    		if (data['1']['state'] == "success")
+    		{
+    			create_view(data['1'],"#manager_afternoon","#manager_evening");
+    		}
+    		if (data['2']['state'] == "success")
+    		{
+    			create_view(data['2'],"#boy_afternoon","#boy_evening");
+    		}
+    		if (data['3']['state'] == "success")
+    		{
+    			create_view(data['3'],"#girl_afternoon","#girl_evening");
+    		}
+    		if (data['4']['state'] == "success")
+    		{
+    			create_view(data['4'],"#coach_afternoon","#coach_evening");
+    		}
+    	});
+    });
 
     function create_view(data,afternoon,evening)
 	{

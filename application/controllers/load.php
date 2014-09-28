@@ -29,6 +29,11 @@ class Load extends CI_Controller
     	$this->load->view('directory');
     }
 
+    function profile()
+    {
+        $this->load->view('profile');
+    }
+
     function logout()
     {
        $this->session->sess_destroy();

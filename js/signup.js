@@ -1,17 +1,39 @@
 var Base_url = "http://jianshenfang.duapp.com/index.php/";
 $(function(){
+	$.get(Base_url + "log/check_session",function(data){
+		if (data['state'] == "success")
+		{
+			location.href = Base_url + "load/nav_scheme";
+		}
+	});
 	$("#signup_box").hide();
+	$("#password_reset").hide();
 	$("#output_login").hide();
 	$("#output_signup").hide();
+	$("#output_reset").hide();
 
 	$("#sign").click(function(){
 		$("#signup_box").show();
 		$("#box").hide();
+		$("#output_signup").hide();
 	});
 
 	$("#goback").click(function(){
 		$("#signup_box").hide();
 		$("#box").show();
+	});
+
+	$("#info_goback").click(function(){
+		$("#signup_box").hide();
+		$("#password_reset").hide();
+		$("#output_login").hide();
+		$("#box").show();
+	})
+
+	$("#output_login").on("click","#forget_pwd",function(){
+		$("#signup_box").hide();
+		$("#box").hide();
+		$("#password_reset").show();
 	});
 
 	$("#login").click(function(){
@@ -23,11 +45,11 @@ $(function(){
               	{
               		if ($.trim(data["detail"])=="usernameNotExist")
               		{
-              			message="用户名或密码错误";
+              			message="用户名或密码错误<button id=\"forget_pwd\">忘记密码？</button>";
               		}
               		if ($.trim(data["detail"])=="passwordWrong")
               		{
-              			message="用户名或密码错误";
+              			message="用户名或密码错误<button id=\"forget_pwd\">忘记密码？</button>";
               		}
               		$("#output_log").html(message);
                 	$("#output_login").show();
@@ -89,5 +111,23 @@ $(function(){
 				location.href = Base_url + "load/nav_scheme";
 			}
 		})
-	})
+	});
+	
+	$("#info_submit").click(function(){
+		$.post(Base_url + "log/password_reset",{
+			'username':$("#username_rst").val(),
+			'email':$("#email_rst").val()
+		},function(data){
+			if (data['state'] == "success")
+			{
+				alert("邮件已发送，请查收");
+			}
+			else
+			{
+				message = "学号或者邮箱不正确";
+				$("#output_rst").html(message);
+				$("#output_reset").show();
+			}
+		});
+	});
 });

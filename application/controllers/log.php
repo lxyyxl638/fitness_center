@@ -1,5 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-
+require APPPATH.'/libraries/vendor/autoload.php';
+use Mailgun\Mailgun;
+ 
 class Log extends CI_Controller
 {
     function __construct()
@@ -16,6 +18,20 @@ class Log extends CI_Controller
     function index()
     {
         $this->load->view('login');
+    }
+
+    function check_session()
+    {
+        if ($this->session->userdata('status') == "OK")
+        {
+          $message['state'] = "success";
+          $this->output->set_content_type('application/json')->set_output(json_encode($message));
+        }
+        else
+        {
+          $message['status'] = "fail";
+          $this->output->set_content_type('application/json')->set_output(json_encode($message));
+        }
     }
 
     function login()
@@ -206,45 +222,48 @@ class Log extends CI_Controller
         return FALSE;
       }
     }
-    // function password_reset_post()
-    // {
-    //     $email = $this->input->post('email');
-    //     $randpwd = '';
-    //     for ($i = 0; $i < 8; $i++) 
-    //     {
-    //         $randpwd .= chr(mt_rand(97, 122));
-    //     }    
+
+    function password_reset()
+    {
+        $username = $this->input->post('username');
+        $email = $this->input->post('email');
+        $randpwd = '';
+        for ($i = 0; $i < 8; $i++) 
+        {
+            $randpwd .= chr(mt_rand(97, 122));
+        }    
         
-    //     $this->db->where('email',$email);
-    //     $this->db->from('user');
-    //     if ($this->db->count_all_results() > 0)
-    //     { 
-    //         $data = array(
-    //                       'password' => $this->encrypt->encode($randpwd)
-    //                      );
-    //         $this->db->where('email',$email);
-    //         $this->db->update('user',$data);
-    //         $mg = new Mailgun("key-e7b9c51f08cdfacaf18603c965990109");
-    //         $domain = "youzenyang.com";
+        $this->db->where('email',$email);
+        $this->db->where('username',$username);
+        $this->db->from('user');
+        if ($this->db->count_all_results() > 0)
+        { 
+            $data = array(
+                          'password' => $this->encrypt->encode($randpwd)
+                         );
+            $this->db->where('email',$email);
+            $this->db->update('user',$data);
+            $mg = new Mailgun("key-e7b9c51f08cdfacaf18603c965990109");
+            $domain = "youzenyang.com";
             
-    //         $letter = "您好:
-    //         这是您的新密码 $randpwd:
-    //         请妥善保,
-    //         祝您在“怎样”中快乐成长！
-    //         谢谢！";
-    //         # Now, compose and send your message.
-    //         $mg->sendMessage($domain, array('from'    => 'admin@youzenyang.com', 
-    //                               'to'      => $email, 
-    //                               'subject' => "'怎样'密码更改", 
-    //                               'text'    => $letter));
-    //         $message['state'] = "success";
-    //         $this->response($message,200);
-    //     }
-    //     else
-    //     { 
-    //         $message['state'] = "fail";
-    //         $message['detail'] = "emailInvalid";
-    //        $this->response($message,200);
-    //     }
-    // }
+            $letter = "您好:
+            这是您的新密码 $randpwd
+            请妥善保,
+            谢谢！";
+            # Now, compose and send your message.
+            $mg->sendMessage($domain, array('from'    => 'admin@fitness.com', 
+                                  'to'      => $email, 
+                                  'subject' => "'光彪楼健身房'密码更改", 
+                                  'text'    => $letter));
+            $message['state'] = "success";
+            $this->output->set_content_type('application/json')->set_output(json_encode($message));
+        }
+        else
+        { 
+            $message['state'] = "fail";
+            $message['detail'] = "emailInvalid";
+            $this->output->set_content_type('application/json')->set_output(json_encode($message));
+        }
+    }
+
 }

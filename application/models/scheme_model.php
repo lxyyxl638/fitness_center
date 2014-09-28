@@ -50,6 +50,7 @@ class Scheme_model extends CI_Model
             $this->db->where('id',$id);
             $query = $this->db->get($table);
             $row = $query->row_array();
+
             $validable = $this->validable($row,$table);
 
             $uid = $this->session->userdata('uid');
@@ -74,7 +75,13 @@ class Scheme_model extends CI_Model
 
             if ($validable == 1)
             {          
-                $this->db->where('uid',$uid);
+                $where = array(
+                                'year' => $row['year'],
+                                'season' => $row['season'],
+                                'week' => $row['week'],
+                                'uid' => $uid
+                             );
+                $this->db->where($where);
                 $this->db->from($table);
                 $time = $this->db->count_all_results() + 1;
                 $data = array(
@@ -187,25 +194,36 @@ class Scheme_model extends CI_Model
 
     function validable($row,$table)
     {
-        /*判断此班是否为空*/
-        if ($row['uid'] == 0) return 1;
-       
-        $uid = $this->session->userdata('uid');
-        /*判断此班是否是自己的班*/
-        if ($uid == $row['uid']) return 2;
-
-        /*判断是否可以替换掉此人的班*/
-        /*排班次数比较*/
-        $mytime = $this->get_time($uid,$table);
-        $time = $row['time'];
-        if ($mytime + 1 >= $time) 
+        $day = date('w');
+        /*判断是否是周六周日*/
+        if (0 == $day || 6 == $day)
+        {
+            $time = strtotime(date("H:i:s"));
+            $start_time = strtotime("23:00:30");
+            if ($day == 0 || ($day == 6 && $start_time < $time))
             {
-                return 3;
+                /*判断此班是否为空*/
+                if ($row['uid'] == 0) return 1;
+            
+                $uid = $this->session->userdata('uid');
+                /*判断此班是否是自己的班*/
+                if ($uid == $row['uid']) return 2;
+        
+                /*判断是否可以替换掉此人的班*/
+                /*排班次数比较*/
+                $mytime = $this->get_time($uid,$table);
+                $time = $row['time'];
+                if ($mytime + 1 >= $time) 
+                    {
+                        return 3;
+                    }
+                    else 
+                    {
+                        return 1;
+                    }
             }
-            else 
-            {
-                return 1;
-            }
+        }
+        return 3;
     }
 
     function get_time($uid,$table)

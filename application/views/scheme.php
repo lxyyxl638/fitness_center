@@ -59,7 +59,7 @@
                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">个人中心<strong class="caret"></strong></a>
                    <ul class="dropdown-menu">
                      <li>
-                        <a href="#">修改资料</a>
+                        <a href="profile">修改资料</a>
                      </li>
                      <li>
                         <a href="logout">注销登陆</a>
@@ -75,7 +75,7 @@
       <div class="panel panel-default">
         <div class="panel-heading"><h3>指南</h3></div>
           <div class="panel-body">
-           <h4>排班系统将于<strong>每周日晚上10点半</strong>到<strong>隔天周一上午8点</strong>开放，请大家在这段时间内排班并于周一系统关闭后及时查看自己的排班状态</h4>
+           <h4>排班系统将于<strong>每周六晚上11点</strong>到<strong>周日晚上12点</strong>开放，请大家在这段时间内排班并于周一系统关闭后及时查看自己的排班状态</h4>
            <h4><strong>排班表上的按钮分三种颜色</strong></h4></br>
             <button class="btn btn-success">张三</button>表示此班可以排。
             <button class="btn btn-warning">张三</button>表示此班你已排，你可以选择退班。
